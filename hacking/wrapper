@@ -22,15 +22,13 @@ cd "$ANSIBLE_HOME"
 
 # preserve $PATH
 OLDPATH="$PATH"
-OLDARGS="$@"
-set +u -- -q
-. ./hacking/env-setup
+set +u
+. ./hacking/env-setup -q >/dev/null
 set -u
 
 # restore environment
 PATH="$OLDPATH"
-eval set -- "$OLDARGS"
-unset OLDPATH OLDARGS
+unset OLDPATH
 cd "$OLDPWD"
 
 exec "$ANSIBLE_HOME/bin/$SELF" "$@"
